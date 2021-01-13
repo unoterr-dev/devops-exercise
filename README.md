@@ -6,3 +6,5 @@
 
 4. Minikube is started manually, not via Jenkins file.
     Also are PG deployment and corresponding services. 
+
+5. Hmmmm

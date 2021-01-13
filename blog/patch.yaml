@@ -1,5 +1,5 @@
 spec:
-    spec:
-      containers:
-      - name: blog
-        image: 
+  spec:
+    containers:
+    - image: localhost:5000/unoterr1/blog_pipe:22
+      name: blog
