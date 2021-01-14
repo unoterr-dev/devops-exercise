@@ -2,7 +2,7 @@ resource "google_container_cluster" "primary" {
   name     = "terraform-cluster"
   location = "europe-north1"
   node_locations = [
-    "asia-southeast1-a"
+    "europe-north1-a"
     ]
 
   remove_default_node_pool = true
