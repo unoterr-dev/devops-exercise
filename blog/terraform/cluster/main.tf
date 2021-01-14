@@ -15,5 +15,9 @@ resource "google_container_node_pool" "primary-node" {
   node_config {
     preemptible  = true
     machine_type = "g1-small"
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/logging.write",
+    ]
   }
 }
