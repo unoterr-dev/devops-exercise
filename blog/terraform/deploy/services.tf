@@ -7,7 +7,7 @@ resource "kubernetes_service" "app" {
       app = kubernetes_deployment.app.metadata.0.labels.app
     }
     port {
-      port        = 80
+      port = 80
       target_port = 3000
     }
     type = "NodePort"

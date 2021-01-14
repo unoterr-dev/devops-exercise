@@ -2,7 +2,6 @@ resource "google_container_registry" "registry" {
   project  = "crafty-clover-301509"
   location = "EU"
 }
-
 resource "kubernetes_deployment" "app" {
   metadata {
     name = var.app
