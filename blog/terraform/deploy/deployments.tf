@@ -26,10 +26,20 @@ resource "kubernetes_deployment" "app" {
             container_port = 3000
           }
           env {
-            DATABASE_HOST = "35.228.200.78"
-            DATABASE_NAME = "blog-backend"
-            DATABASE_PASSWORD = "blog_backend"
-            DATABASE_USERNAME = "blog_backend"
+            name  = "DATABASE_HOST"
+            value = "35.228.200.78"
+          }
+          env {
+            name  = "DATABASE_NAME"
+            value = "blog-backend"
+          }
+          env {
+            name  = "DATABASE_PASSWORD"
+            value = "blog_backend"
+          }
+          env {
+            name  = "DATABASE_USERNAME"
+            value = "blog_backend"
           }
         }
       }
