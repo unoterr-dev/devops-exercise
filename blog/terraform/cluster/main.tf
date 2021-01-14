@@ -7,10 +7,6 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  ip_allocation_policy {
-    use_ip_aliases    = true
-  }
-
 }
 # gcloud container clusters get-credentials terraform-cluster --zone="europe-north1""
 resource "google_container_node_pool" "primary-node" {
@@ -25,6 +21,7 @@ resource "google_container_node_pool" "primary-node" {
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
       "https://www.googleapis.com/auth/logging.write",
+      " https://www.googleapis.com/auth/service.management",
     ]
   }
 }
