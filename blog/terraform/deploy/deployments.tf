@@ -31,7 +31,7 @@ resource "kubernetes_deployment" "app" {
           }
           env {
             name  = "DATABASE_HOST"
-            value = "10.122.176.3"
+            value = "35.228.134.74"
           }
           env {
             name  = "DATABASE_NAME"
