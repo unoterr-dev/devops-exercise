@@ -4,7 +4,7 @@ variable "cluster" {
 variable "app" {
   type        = string
   description = "Name of application"
-  default     = "app-1"
+  default     = "app"
 }
 
 variable "zone" {
