@@ -18,14 +18,14 @@ node {
     }
     stage('Create cluster') {
         sh """
-        cd terraform/cluster
+        cd blog/terraform/cluster
         terraform init
         terraform apply
         """
     }
     stage('Deploy') {
         sh """
-        cd terraform/k8s
+        cd blog/terraform/k8s
         terraform init
         terraform apply
         """
