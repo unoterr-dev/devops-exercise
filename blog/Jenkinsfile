@@ -4,8 +4,9 @@ node {
         checkout scm
     }
     withEnv(['HOST=eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp:']){
-        stage('Build image and push') {
-            sh """
+        stage('Build and Push') {
+            sh "#!/bin/zsh \n" +
+            """
             export HOST="${env.HOST}"
             export IMAGE="${env.BUILD_NUMBER}"
             cd blog && envsubst < docker-tmp.yml > docker-compose.yml 
