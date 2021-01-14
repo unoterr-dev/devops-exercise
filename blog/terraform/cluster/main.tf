@@ -4,9 +4,13 @@ resource "google_container_cluster" "primary" {
   node_locations = [
     "europe-north1-a"
     ]
-
   remove_default_node_pool = true
   initial_node_count       = 1
+
+  ip_allocation_policy {
+    use_ip_aliases    = true
+  }
+
 }
 # gcloud container clusters get-credentials terraform-cluster --zone="europe-north1""
 resource "google_container_node_pool" "primary-node" {
