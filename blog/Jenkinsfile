@@ -20,14 +20,14 @@ node {
         sh """
         cd blog/terraform/cluster
         terraform init
-        terraform apply
+        terraform apply -auto-approve
         """
     }
     stage('Deploy') {
         sh """
         cd blog/terraform/k8s
         terraform init
-        terraform apply
+        terraform apply -auto-approve
         """
     }
 /*
