@@ -1,55 +1,46 @@
 node { 
     def app
-
     stage('Checkout code') {
-    //  Pulling the whole repo, not only Jenkinsfile.
         checkout scm
     }
-
-    stage('Build image') {
- //       app = docker.build("unoterr1/blog_pipe", "-f blog/Dockerfile .")
- //      app = docker.build("unoterr1/blog_pipe", "./blog")
- 
-       sh """export HOST="192.168.64.3:5000/unoterr1/blog_comp:" && export IMAGE="${env.BUILD_NUMBER}" && cd blog && envsubst < docker-tmp.yml > docker-compose.yml | docker-compose build blog && docker-compose push blog"""
-
-        //The same thing as the following command, but a bit fancy. Requires Docker Pipeline Jenkins plugin.
-        //sh 'cd blog && docker-compose up --build'
+    withEnv(['HOST=eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp:']){
+        stage('Build image and push') {
+            sh """
+            export HOST="${env.HOST}"
+            export IMAGE="${env.BUILD_NUMBER}"
+            cd blog && envsubst < docker-tmp.yml > docker-compose.yml 
+            docker-compose build blog
+            docker-compose push blog
+            """.stripIndent()
+        }
     }
-
-    stage('Test image') {
-            sh 'echo "Tests passed"'
-    }
-
-
-//  This section was used to push created image to dockerhub but now it is done without it
-//  using imagePullPolicy: Never in blog.yaml 
-
     stage('Push') {
-
 //        sh """docker-compose push blog"""
-
 //        docker.withRegistry('https://registry.hub.docker.com/', 'hub') {    
-
 //        docker.withRegistry('http://localhost:55001/') {        
-//            app.push("${env.BUILD_NUMBER}")   
-
-
-
-//           app.push("latest")        
+//          app.push("${env.BUILD_NUMBER}")   
+//          app.push("latest")        
 //            }    
         }
 
-
-    stage('Deploy App') {
+    withCredentials([string(credentialsId: 'HOST', variable: 'HOST'),
+        string(credentialsId: 'USER', variable: 'USER'),
+        string(credentialsId: 'PASS', variable: 'PASS'),
+        string(credentialsId: 'NAME', variable: 'NAME')]) {
+            stage('Deploy App') {
 //       sh 'minikube start'
 //        sh 'eval $(minikube docker-env)' //Configure environment to use minikube’s Docker daemon
-
-        sh "cd blog && kubectl apply -f mysecret.yaml"
+//            sh "cd blog && python3 secret.py ${env.NAME} ${env.PASS} ${env.DB} ${env.HOST}" 
+//            sh "cd blog && kubectl apply -f mysecret.yaml"
 
 //          sh "cd blog && python3 version.py ${env.BUILD_NUMBER}" 
 //          sh 'cd blog && kubectl patch deployment blog --patch "$(cat patch.yaml)"'
 
-        sh """export IMAGE="${env.BUILD_NUMBER}" && cd blog && envsubst < blog.yaml > blog_tmp.yaml | kubectl apply -f blog_tmp.yaml"""
+            sh """
+            export IMAGE="${env.BUILD_NUMBER}"
+            cd blog && envsubst < blog.yaml > blog_tmp.yaml
+            kubectl apply -f blog_tmp.yaml
+            """.stripIndent()
 
 //       The following section is done manually because db deployment and services
 //       in this case do not need to be recreated everytime because no changes are introduced to them.
@@ -57,5 +48,7 @@ node {
 //       sh 'cd blog && kubectl apply -f service_db.yaml'
 //       sh 'cd blog && kubectl apply -f service_blog.yaml'
 //       sh 'cd blog && kubectl apply -f db.yaml'
+
+        }
     }
 }

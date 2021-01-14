@@ -15,10 +15,8 @@ spec:
     spec:
       containers:
       - name: blog
-#        image: unoterr1/blog_pipe:latest
         imagePullPolicy: Always
-#       image: localhost:5000/unoterr1/blog_pipe:latest
-        image: 192.168.64.3:5000/unoterr1/blog_comp:$IMAGE
+        image: eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp:$IMAGE
         env:
         -  name: DATABASE_USERNAME
            valueFrom:
