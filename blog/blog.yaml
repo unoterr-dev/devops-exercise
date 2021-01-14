@@ -18,25 +18,13 @@ spec:
         imagePullPolicy: Always
         image: eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp:$IMAGE
         env:
-        -  name: DATABASE_USERNAME
-           valueFrom:
-            secretKeyRef:
-              name: mysecret
-              key: DATABASE_USERNAME
-        -  name: DATABASE_PASSWORD
-           valueFrom:
-            secretKeyRef:
-              name: mysecret
-              key: DATABASE_PASSWORD
-        -  name: DATABASE_NAME
-           valueFrom:
-            secretKeyRef:
-              name: mysecret
-              key: DATABASE_NAME
-        -  name: DATABASE_HOST
-           valueFrom:
-            secretKeyRef:
-              name: mysecret
-              key: DATABASE_HOST
+        - name: DATABASE_HOST
+          value: $HOST
+        - name: DATABASE_NAME
+          value: $NAME
+        - name: DATABASE_PASSWORD
+          value: $PASS
+        - name: DATABASE_USERNAME
+          value: $USER
         ports:
           - containerPort: 3000
