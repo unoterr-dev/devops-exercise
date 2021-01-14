@@ -4,5 +4,4 @@ services:
     build: .
     ports:
       - '3000:3000'
-#    image: "$HOSTunoterr1/blog_comp:$IMAGE"
     image: $HOST$IMAGE
