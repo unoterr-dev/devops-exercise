@@ -16,6 +16,7 @@ node {
             """.stripIndent()
         }
     }
+/*    
     stage('Create cluster') {
         sh """
         cd blog/terraform/cluster
@@ -23,9 +24,10 @@ node {
         terraform apply -auto-approve
         """
     }
+*/
     stage('Deploy') {
         sh """
-        cd blog/terraform/k8s
+        cd blog/terraform/deploy
         terraform init
         terraform apply -auto-approve
         """
