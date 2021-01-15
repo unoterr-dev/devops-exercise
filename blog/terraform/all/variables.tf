@@ -9,10 +9,6 @@ variable "zone" {
   default = "europe-north1-a"
 }
 
-variable "cluster" {
-  default = "terraform-test"
-}
-
 variable "credentials" {
   default = "cred.json"
 }
@@ -40,10 +36,6 @@ variable "app" {
   type        = string
   description = "Name of application"
   default     = "app"
-}
-
-variable "zone" {
-  default = "europe-north1"
 }
 
 variable "docker-image" {
