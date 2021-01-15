@@ -24,7 +24,7 @@ resource "kubernetes_deployment" "app" {
       }
       spec {
         container {
-          image = "eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp:latest"
+          image = var.docker-image
           name  = var.app
           port {
             name = "port-3000"
@@ -41,11 +41,11 @@ resource "kubernetes_deployment" "app" {
           }
           env {
             name  = "DATABASE_PASSWORD"
-            value = "blog_backend"
+            value = var.user
           }
           env {
             name  = "DATABASE_USERNAME"
-            value = "blog_backend"
+            value = var.pass
           }
 
         }

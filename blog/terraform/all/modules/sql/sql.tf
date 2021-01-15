@@ -33,6 +33,6 @@ resource "google_sql_database_instance" "main_primary" {
 }
 resource "google_sql_user" "db_user" {
     instance = google_sql_database_instance.main_primary.name
-    name = "blog_backend"
-    password = "blog_backend" 
+    name = var.user
+    password = var.password 
 }

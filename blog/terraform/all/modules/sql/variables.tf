@@ -6,3 +6,10 @@ variable "pool_addres" {
 variable "pool_zone" {
   type = string
 }
+
+variable "user" {
+  type = string
+}
+variable "pass" {
+  type = string
+}

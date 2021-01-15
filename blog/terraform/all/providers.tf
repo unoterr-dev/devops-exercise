@@ -6,6 +6,10 @@ provider "google" {
 provider "kubernetes" {
 }
 
+module "secret" {
+    source = "./modules/secrets"
+}
+
 module "vpc" {
     source = "./modules/vpc"
 }
@@ -17,11 +21,14 @@ module "cluster" {
 
 module "sql" {
     source = "./modules/sql"
-//    pool_addres = module.cluster.pool_addres
     pool_zone = module.cluster.pool_zone //useless information for dependency arragment
+    user = module.secrets.secret_user
+    pass = module.secrets.secret_pass
 }
 
 module "deploy" {
     source = "./modules/deploy"
     host_addres = module.sql.host_addres
+    user = module.secrets.secret_user
+    pass = module.secrets.secret_pass
 }
