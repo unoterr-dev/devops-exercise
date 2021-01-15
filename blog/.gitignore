@@ -41,5 +41,5 @@ yarn-debug.log*
 .yarn-integrity
 
 .env
-mysecret.yaml
+mysecrets.yaml
 blog/terraform/cluster/cred.json
