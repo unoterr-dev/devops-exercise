@@ -14,3 +14,8 @@ module "sql" {
     source = "./modules/sql"
     pool_addres = module.cluster.pool_addres
 }
+
+module "deploy" {
+    source = "./modules/deploy"
+    host_addres = module.sql.host_addres
+}

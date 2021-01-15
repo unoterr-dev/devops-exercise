@@ -34,7 +34,7 @@ resource "kubernetes_deployment" "app" {
           env {
             name  = "DATABASE_HOST"
             // value = "35.228.134.74"
-            value = google_sql_database_instance.main_primary.ip_address.0.ip_address
+            value = var.host_addres
           }
           env {
             name  = "DATABASE_NAME"

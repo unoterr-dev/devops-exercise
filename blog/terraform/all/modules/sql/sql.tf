@@ -30,7 +30,3 @@ resource "google_sql_user" "db_user" {
     name = "blog_backend"
     password = "blog_backend" 
 }
-
-output "adress" {
-  value = google_sql_database_instance.main_primary.ip_address.0.ip_address
-}
