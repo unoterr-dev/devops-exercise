@@ -18,8 +18,9 @@ resource "google_sql_database_instance" "main_primary" {
 
         ip_configuration {
             authorized_networks {
-                name = "GKE"
-                value = var.pool_addres //TAKE FROM POD BLAH BLAH 
+                name = "All"
+                //value = var.pool_addres 
+                value = "0.0.0.0/0" //BAD BAD VERY BAD
             }
         }
     }
