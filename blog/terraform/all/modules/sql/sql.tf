@@ -8,6 +8,8 @@ resource "google_sql_database_instance" "main_primary" {
     database_version = "POSTGRES_13"
     region = "europe-north1"
 
+    deletion_protection = false
+
 //    depends_on = [kubernetes_deployment.app]   //??? CHICKEN OR EGG
 //    depends_on = [google_container_node_pool.primary_node]
 
