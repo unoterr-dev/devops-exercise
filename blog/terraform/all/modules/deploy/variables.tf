@@ -18,7 +18,7 @@ variable "image" {
 }
 
 variable "full_image" {
-  default = "eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp:${var.image}"
+  default = format("eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp:%s", var.image)
 }
 
 /*
