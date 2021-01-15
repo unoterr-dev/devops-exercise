@@ -5,3 +5,7 @@ provider "google" {
 }
 provider "kubernetes" {
 }
+
+module "cluster" {
+    source = "./modules/cluster"
+}
