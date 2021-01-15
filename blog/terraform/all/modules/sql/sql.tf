@@ -10,7 +10,7 @@ resource "random_id" "db_name_suffix" {
 resource "google_sql_database_instance" "main_primary" {
     name = "terraform-base-${random_id.db_name_suffix.hex}"
     database_version = "POSTGRES_13"
-    region = "europe-north1"
+    region = var.pool_zone // "europe-north1"
 
     deletion_protection = false
 
