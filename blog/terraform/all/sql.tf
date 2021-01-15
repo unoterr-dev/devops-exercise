@@ -9,7 +9,7 @@ resource "google_sql_database_instance" "main_primary" {
     region = "europe-north1"
 
 //    depends_on = [kubernetes_deployment.app]   //??? CHICKEN OR EGG
-    depends_on = [google_container_node_pool.primary-node]
+    depends_on = [google_container_node_pool.primary_node]
 
     settings {
         tier = "db-f1-micro"
@@ -19,7 +19,7 @@ resource "google_sql_database_instance" "main_primary" {
         ip_configuration {
             authorized_networks {
                 name = "GKE"
-                value = resource.google_container_node_pool.primary-node.instance_group_urls //TAKE FROM POD BLAH BLAH 
+                value = resource.google_container_node_pool.primary_node.pool_adress //TAKE FROM POD BLAH BLAH 
             }
         }
     }

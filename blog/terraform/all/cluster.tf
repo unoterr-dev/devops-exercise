@@ -12,7 +12,7 @@ resource "google_container_cluster" "primary" {
 
 }
 # gcloud container clusters get-credentials terraform-cluster --zone="europe-north1""
-resource "google_container_node_pool" "primary-node" {
+resource "google_container_node_pool" "primary_node" {
   name       = "my-node-pool"
   location   = "europe-north1"
   cluster    = google_container_cluster.primary.name
@@ -29,6 +29,6 @@ resource "google_container_node_pool" "primary-node" {
   }
 }
 
-output "pool-adress" {
-  value = google_container_node_pool.primary-node.instance_group_urls
+output "pool_adress" {
+  value = google_container_node_pool.primary_node.instance_group_urls
 }
