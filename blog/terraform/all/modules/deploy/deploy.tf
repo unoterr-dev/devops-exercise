@@ -19,7 +19,7 @@ resource "kubernetes_deployment" "app" {
       }
       spec {
         container {
-          image = var.docker-image
+          image = var.full_image
           name  = var.app
           port {
             name = "port-3000"
@@ -27,7 +27,6 @@ resource "kubernetes_deployment" "app" {
           }
           env {
             name  = "DATABASE_HOST"
-            // value = "35.228.134.74"
             value = var.host_addres
           }
           env {

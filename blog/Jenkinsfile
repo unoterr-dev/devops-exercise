@@ -24,6 +24,10 @@ node {
         terraform apply -auto-approve
         """
     }
+
+terraform apply \
+  -var 'vpc_id=$(AWS_VPC_ID)'
+
 */
     stage('Deploy') {
         sh """

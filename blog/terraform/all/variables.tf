@@ -9,3 +9,7 @@ variable "project" {
 variable "region" {
   default = "europe-north1"
 }
+
+variable "image" {
+  type = string
+}
