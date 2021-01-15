@@ -1,8 +1,8 @@
-resource "google_compute_network" "vpc_network" {
+/*resource "google_compute_network" "vpc_network" {
   name = "terraform-net"
   routing_mode = "GLOBAL"
   auto_create_subnetworks = "true"
-}
+} */
 
 resource "google_container_cluster" "primary" {
   name     = "terraform-cluster"
