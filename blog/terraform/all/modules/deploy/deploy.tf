@@ -4,7 +4,7 @@ resource "google_container_registry" "registry" {
 }
 
 resource "kubernetes_deployment" "app" {
-  depends_on = [google_sql_database_instance.main_primary]
+//  depends_on = [google_sql_database_instance.main_primary]
   metadata {
     name = var.app
     labels = {
