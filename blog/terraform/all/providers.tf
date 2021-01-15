@@ -1,9 +1,7 @@
 provider "google" {
-  credentials = file(var.credentials)
-  project     = var.project
-  region      = var.region
-}
-provider "kubernetes" {
+    credentials = file(var.credentials)
+    project     = var.project
+    region      = var.region
 }
 
 module "secrets" {
