@@ -1,3 +1,4 @@
+/*
 resource "google_sql_database" "main" {
     name = "main"
     instance = "google_sql_database_instance.main_primary.name"
@@ -33,3 +34,5 @@ resource "google_sql_user" "db_user" {
 output "adress" {
   value = google_sql_database_instance.main_primary.ip_address.0.ip_address
 }
+
+*/
