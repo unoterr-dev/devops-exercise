@@ -1,56 +1,38 @@
 node { 
-    def app
+    image = sh (script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+    host = 'eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp:'
+   
     stage('Checkout code') {
         checkout scm
+   
     }
-//            export IMAGE="${env.BUILD_NUMBER}"
-    withEnv(['HOST=eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp:']){
-        stage('Build and Push') {
-            sh "#!/bin/zsh \n" +
-            """
-            export HOST="${env.HOST}"
-            export IMAGE="latest"
-            cd blog && envsubst < docker-tmp.yml > docker-compose.yml 
-            docker-compose build blog
-            docker-compose push blog
-            """.stripIndent()
+    stage('Build Image and Push') {
+        withEnv(['HOST='+host, 'IMAGE='+image]){
+            dir('blog') {
+               sh """
+                echo ${IMAGE}
+                docker-compose build blog
+                docker-compose push blog
+                """.stripIndent()
+            }
         }
     }
+    stage('Plan') {
+        dir('blog/terraform/all') {
+            sh 'terraform init -input=false'
+            sh "terraform plan -input=false -out tfplan -var 'image=${image}'"
+            sh 'terraform show -no-color tfplan'
+        }
+    }
+
+
 /*    
-    stage('Create cluster') {
+    stage('Deploy') {
         sh """
         cd blog/terraform/cluster
         terraform init
         terraform apply -auto-approve
         """
     }
-
-terraform apply \
-  -var 'vpc_id=$(AWS_VPC_ID)'
-
-*/
-    stage('Deploy') {
-        sh """
-        cd blog/terraform/deploy
-        terraform init
-        terraform apply -auto-approve
-        """
-    }
-/*
-    withCredentials([string(credentialsId: 'HOST', variable: 'HOST'),
-        string(credentialsId: 'USER', variable: 'USER'),
-        string(credentialsId: 'PASS', variable: 'PASS'),
-        string(credentialsId: 'NAME', variable: 'NAME')]) {
-            stage('Deploy App') {
-
-
-            sh """
-            export IMAGE="${env.BUILD_NUMBER}"
-            cd blog && envsubst < blog.yaml > blog_tmp.yaml
-            kubectl apply -f blog_tmp.yaml
-            """.stripIndent()
-
-        }
-    }
-*/
+    */
 }
