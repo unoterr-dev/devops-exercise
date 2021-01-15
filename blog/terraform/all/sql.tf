@@ -19,7 +19,7 @@ resource "google_sql_database_instance" "main_primary" {
         ip_configuration {
             authorized_networks {
                 name = "GKE"
-                value = resource.google_container_node_pool.primary_node.pool_adress //TAKE FROM POD BLAH BLAH 
+                value = module.cluster.pool_addres //TAKE FROM POD BLAH BLAH 
             }
         }
     }
