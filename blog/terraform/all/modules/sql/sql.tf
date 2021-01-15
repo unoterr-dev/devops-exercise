@@ -3,11 +3,14 @@ resource "google_sql_database" "main" {
     instance = "google_sql_database_instance.main_primary.name"
 }
 
+resource "random_id" "db_name_suffix" {
+  byte_length = 4
+}
+
 resource "google_sql_database_instance" "main_primary" {
-    name = "terraform-base"
+    name = "terraform-base-${random_id.db_name_suffix.hex}"
     database_version = "POSTGRES_13"
     region = "europe-north1"
-
     deletion_protection = false
 
 //    depends_on = [kubernetes_deployment.app]   //??? CHICKEN OR EGG
