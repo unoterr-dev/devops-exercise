@@ -34,6 +34,6 @@ resource "google_container_node_pool" "primary-node" {
     ]
   }
 }
-output "pool-adress" {
+output "pool_adress" {
   value = google_container_node_pool.primary-node.instance_group_urls
 }
