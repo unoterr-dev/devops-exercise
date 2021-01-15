@@ -6,7 +6,7 @@ provider "google" {
 provider "kubernetes" {
 }
 
-module "secret" {
+module "secrets" {
     source = "./modules/secrets"
 }
 
