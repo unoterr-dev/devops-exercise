@@ -2,6 +2,7 @@ resource "google_container_registry" "registry" {
   project  = "crafty-clover-301509"
   location = "EU"
 }
+
 resource "kubernetes_deployment" "app" {
   depends_on = [google_sql_database_instance.main_primary]
   metadata {
@@ -53,3 +54,18 @@ resource "kubernetes_deployment" "app" {
     }
   }
 }
+resource "kubernetes_service" "app" {
+  metadata {
+    name = var.app
+  }
+  spec {
+    selector = {
+      app = kubernetes_deployment.app.metadata.0.labels.app
+    }
+    port {
+      port = 80
+      target_port = 3000
+    }
+    type = "LoadBalancer"
+  }
+} 
