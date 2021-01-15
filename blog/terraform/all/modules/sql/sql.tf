@@ -9,7 +9,7 @@ resource "google_sql_database_instance" "main_primary" {
     region = "europe-north1"
 
 //    depends_on = [kubernetes_deployment.app]   //??? CHICKEN OR EGG
-    depends_on = [google_container_node_pool.primary_node]
+//    depends_on = [google_container_node_pool.primary_node]
 
     settings {
         tier = "db-f1-micro"
