@@ -12,7 +12,7 @@ module "cluster" {
 
 module "sql" {
     source = "./modules/sql"
-    pool_addres = module.cluster.pool_addres
+//    pool_addres = module.cluster.pool_addres
 }
 
 module "deploy" {
