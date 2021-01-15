@@ -9,3 +9,8 @@ provider "kubernetes" {
 module "cluster" {
     source = "./modules/cluster"
 }
+
+module "sql" {
+    source = "./modules/sql"
+    pood_addres = module.cluster.pool_addres
+}
