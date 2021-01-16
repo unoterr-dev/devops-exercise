@@ -1,9 +1,3 @@
-data "google_service_account_access_token" "my_kubernetes_sa" {
-  target_service_account = "terraformar@terraformar.iam.gserviceaccount.com"
-  scopes                 = ["userinfo-email", "cloud-platform"]
-  lifetime               = "3600s"
-}
-
 resource "google_container_cluster" "primary" {
   name     = "terraform-cluster"
   location = "europe-north1"
@@ -34,6 +28,7 @@ resource "google_container_node_pool" "primary_node" {
     machine_type = "g1-small"
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/devstorage.full_control",
     ]
   }
   /*
@@ -43,10 +38,16 @@ resource "google_container_node_pool" "primary_node" {
   } */ //0_0
 }
 
+data "google_service_account_access_token" "kube" {
+  target_service_account = "terraformar@terraformar.iam.gserviceaccount.com"
+  scopes                 = ["userinfo-email", "cloud-platform"]
+  lifetime               = "3600s"
+}
+
 provider "kubernetes" { 
   load_config_file = false
   host  = "https://${google_container_cluster.primary.endpoint}"
-  token = data.google_service_account_access_token.my_kubernetes_sa.access_token
+  token = google_service_account_access_token.kube.access_token
   cluster_ca_certificate = base64decode(
     google_container_cluster.primary.master_auth[0].cluster_ca_certificate,
   ) 
