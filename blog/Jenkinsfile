@@ -23,15 +23,9 @@ node {
             sh 'terraform show -no-color tfplan'
         }
     }
-
-
-/*    
-    stage('Deploy') {
-        sh """
-        cd blog/terraform/cluster
-        terraform init
-        terraform apply -auto-approve
-        """
-    }
-    */
+    stage('Apply') {
+            steps {
+                sh "terraform apply -auto-approve tfplan"
+            }
+        }
 }
