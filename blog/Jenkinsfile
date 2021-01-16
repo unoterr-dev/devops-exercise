@@ -23,16 +23,9 @@ node {
             sh 'terraform show -no-color tfplan'
         }
     }
-    /*
     stage('Apply') {
         dir('blog/terraform/all') {
                 sh "terraform apply -auto-approve tfplan"
             }
-        }   */
-
-    stage('Destroy') {
-        dir('blog/terraform/all') {
-                sh "terraform destroy -auto-approve"
-            }
-        }
+        }   
 }
