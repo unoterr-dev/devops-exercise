@@ -1,4 +1,8 @@
-data "google_client_config" "provider" {}
+data "google_service_account_access_token" "my_kubernetes_sa" {
+  target_service_account = "terraformar@terraformar.iam.gserviceaccount.com"
+  scopes                 = ["userinfo-email", "cloud-platform"]
+  lifetime               = "3600s"
+}
 
 resource "google_container_cluster" "primary" {
   name     = "terraform-cluster"
@@ -32,16 +36,17 @@ resource "google_container_node_pool" "primary_node" {
       "https://www.googleapis.com/auth/cloud-platform",
     ]
   }
+  /*
   provisioner "local-exec" {
     command = "gcloud container clusters describe ${google_container_cluster.primary.name} --zone=${google_container_cluster.primary.location}"
     interpreter = ["/bin/zsh", "-c"]
-  }
+  } */ //0_0
 }
 
 provider "kubernetes" { 
   load_config_file = false
   host  = "https://${google_container_cluster.primary.endpoint}"
-  token = data.google_client_config.provider.access_token
+  token = data.google_service_account_access_token.my_kubernetes_sa.access_token
   cluster_ca_certificate = base64decode(
     google_container_cluster.primary.master_auth[0].cluster_ca_certificate,
   ) 
