@@ -1,6 +1,6 @@
 node { 
     image = sh (script: 'git rev-parse --short HEAD', returnStdout: true).trim()
-    host = 'eu.gcr.io/terraform/unoterr1/blog_comp:'
+    host = 'eu.gcr.io/terraformar/unoterr1/blog_comp:'
    
     stage('Checkout code') {
         checkout scm

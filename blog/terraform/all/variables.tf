@@ -3,7 +3,7 @@ variable "credentials" {
 }
 
 variable "project" {
-  default = "crafty-clover-301509"
+  default = "terraformar"
 }
 
 variable "region" {
