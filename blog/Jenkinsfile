@@ -18,6 +18,7 @@ node {
     }
     stage('Plan') {
         dir('blog/terraform/all') {
+            sh 'rm terraform.tfstate*'
             sh 'terraform init -input=false'
             sh "terraform plan -input=false -out tfplan -var 'image=${image}'"
             sh 'terraform show -no-color tfplan'
