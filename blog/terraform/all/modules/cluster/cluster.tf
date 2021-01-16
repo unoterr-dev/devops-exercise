@@ -17,7 +17,7 @@ resource "google_container_cluster" "primary" {
     services_ipv4_cidr_block = "/22"
   }
 }
-# gcloud container clusters get-credentials terraform-cluster --zone="europe-north1""
+
 resource "google_container_node_pool" "primary_node" {
   name       = "my-node-pool"
   location   = "europe-north1"
@@ -30,17 +30,11 @@ resource "google_container_node_pool" "primary_node" {
     machine_type = "g1-small"
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
-//      "https://www.googleapis.com/auth/logging.write",
-//      "https://www.googleapis.com/auth/service.management",
-//      "https://www.googleapis.com/auth/devstorage.read_only",
     ]
   }
-  // NOT VERY GOOD PRACTICCE
-  /*
   provisioner "local-exec" {
     command = "gcloud container clusters describe ${google_container_cluster.primary.name} --zone=${google_container_cluster.primary.location}"
   }
-  */
 }
 
 provider "kubernetes" { 
