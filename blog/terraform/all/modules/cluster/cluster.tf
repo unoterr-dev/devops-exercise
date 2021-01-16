@@ -31,12 +31,15 @@ resource "google_container_node_pool" "primary_node" {
       "https://www.googleapis.com/auth/cloud-platform",
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/service.management",
+      "https://www.googleapis.com/auth/devstorage.read_only",
     ]
   }
   // NOT VERY GOOD PRACTICCE
+  /*
   provisioner "local-exec" {
     command = "gcloud container clusters describe ${google_container_cluster.primary.name} --zone=${google_container_cluster.primary.location}"
   }
+  */
 }
 
 provider "kubernetes" {
