@@ -32,7 +32,7 @@ node {
         }  */
         stage('DST') {
         dir('blog/terraform/all') {
-                sh "terraform destroy -auto-approve tfplan"
+                sh "terraform destroy -auto-approve"
             }
         } 
 }
