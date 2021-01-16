@@ -16,7 +16,6 @@ node {
             }
         }
     }
-    /*
     stage('Plan') {
         dir('blog/terraform/all') {
             sh 'terraform init -input=false'
@@ -28,5 +27,5 @@ node {
         dir('blog/terraform/all') {
                 sh "terraform apply -auto-approve tfplan"
             }
-        }   */
+        }   
 }

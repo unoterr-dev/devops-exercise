@@ -25,7 +25,7 @@ resource "google_container_node_pool" "primary_node" {
   node_count = 1
 
   node_config {
-    service_account = "terraformar@terraformar.iam.gserviceaccount.com"
+    service_account = var.service_acc
     preemptible  = true
     machine_type = "g1-small"
     oauth_scopes = [
