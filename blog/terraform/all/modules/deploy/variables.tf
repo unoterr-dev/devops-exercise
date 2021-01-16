@@ -18,7 +18,7 @@ variable "image" {
 }
 
 variable "host" {
-  default = "eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp"
+  default = "eu.gcr.io/terraformar/unoterr1/blog_comp"
 }
 
 /*
