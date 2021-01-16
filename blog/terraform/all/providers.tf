@@ -29,6 +29,4 @@ module "deploy" {
     host_addres = module.sql.host_addres
     user = module.secrets.secret_user
     pass = module.secrets.secret_pass
-    
-    image = var.image //TEST THIS ONE
 }
