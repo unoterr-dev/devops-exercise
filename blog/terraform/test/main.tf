@@ -1,6 +1,6 @@
   resource "null_resource" "apply" {
     provisioner "local-exec" {
-        command = "gcloud container clusters describe ${google_container_cluster.primary.name} --zone=${google_container_cluster.primary.location}"
+        command = "gcloud container clusters describe terraform-cluster --zone='europe-north1'"
         interpreter = ["/bin/zsh", "-c"]
     } 
   }
