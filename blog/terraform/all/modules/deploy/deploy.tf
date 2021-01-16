@@ -19,7 +19,7 @@ resource "kubernetes_deployment" "app" {
       }
       spec {
         container {
-          image = var.full_image
+          image = format("%s:%s", var.host, var.image)
           name  = var.app
           port {
             name = "port-3000"

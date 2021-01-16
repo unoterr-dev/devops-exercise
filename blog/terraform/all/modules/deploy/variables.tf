@@ -17,8 +17,8 @@ variable "image" {
   type = string
 }
 
-variable "full_image" {
-  default = format("eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp:%s", var.image)
+variable "host" {
+  default = "eu.gcr.io/crafty-clover-301509/unoterr1/blog_comp"
 }
 
 /*
