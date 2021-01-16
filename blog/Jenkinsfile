@@ -24,7 +24,7 @@ node {
         }
     }
     stage('Apply') {
-            steps {
+        dir('blog/terraform/all') {
                 sh "terraform apply -auto-approve tfplan"
             }
         }
