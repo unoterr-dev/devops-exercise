@@ -1,5 +1,5 @@
 resource "google_compute_network" "vpc_network" {
-  provider = google-bet
+  provider = google-beta
   name = "terraform-vpc"
   routing_mode = "GLOBAL"
   auto_create_subnetworks = "true"
