@@ -4,12 +4,6 @@ provider "google" {
     region      = var.region
 }
 
-provider "google-beta" {
-    credentials = file(var.credentials)
-    project     = var.project
-    region      = var.region
-}
-
 module "secrets" {
     source = "./modules/secrets"
 }
@@ -38,3 +32,10 @@ module "deploy" {
     pass = module.secrets.secret_pass
     image = var.image
 }
+
+/*
+provider "google-beta" {
+    credentials = file(var.credentials)
+    project     = var.project
+    region      = var.region
+}   */
