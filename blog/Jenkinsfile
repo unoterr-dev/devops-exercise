@@ -31,7 +31,8 @@ node { /*
         }  */
         stage('Show') {
         dir('blog/terraform/all') {
-                sh "terraform show"
+                sh "terraform state rm module.vpc.google_compute_network.vpc_network"
+                sh "terraform state rm module.sql.google_sql_user.db_user"
             }
         }
 }
