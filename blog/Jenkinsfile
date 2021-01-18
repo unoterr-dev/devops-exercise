@@ -1,4 +1,4 @@
-node { /*
+node { 
     image = sh (script: 'git rev-parse --short HEAD', returnStdout: true).trim()
     host = 'eu.gcr.io/terraformar/unoterr1/blog_comp:'
    
@@ -28,11 +28,5 @@ node { /*
         dir('blog/terraform/all') {
                 sh "terraform apply -auto-approve tfplan"
             }
-        }  */
-        stage('Show') {
-        dir('blog/terraform/all') {
-                sh "terraform state rm module.vpc.google_compute_network.vpc_network"
-                sh "terraform state rm module.sql.google_sql_user.db_user"
-            }
-        }
+        }  
 }
