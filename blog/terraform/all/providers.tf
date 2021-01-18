@@ -20,6 +20,7 @@ module "cluster" {
 module "sql" {
     source = "./modules/sql"
     pool_zone = module.cluster.pool_zone //useless information for dependency arragment
+    vpc_id = module.vpc.vpc_id
     user = module.secrets.secret_user
     pass = module.secrets.secret_pass
 }

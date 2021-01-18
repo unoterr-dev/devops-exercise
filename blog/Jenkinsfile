@@ -16,6 +16,7 @@ node {
             }
         }
     }   
+    /*
     stage('Plan') {
         dir('blog/terraform/all') {
            // sh 'rm terraform.tfstate*'
@@ -27,6 +28,11 @@ node {
     stage('Apply') {
         dir('blog/terraform/all') {
                 sh "terraform apply -auto-approve tfplan"
+            }
+        }   */
+        stage('DST') {
+        dir('blog/terraform/all') {
+                sh "terraform destroy -auto-approve"
             }
         } 
 }

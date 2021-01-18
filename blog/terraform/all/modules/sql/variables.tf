@@ -12,3 +12,6 @@ variable "user" {
 variable "pass" {
   type = string
 }
+variable "vpc_id" {
+  type = string
+}
