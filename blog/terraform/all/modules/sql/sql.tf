@@ -24,14 +24,14 @@ resource "google_sql_database_instance" "main_primary" {
         disk_size = 10
 
         ip_configuration {
-            /*
+            
             authorized_networks {
                 name = "All"
                 //value = var.pool_addres 
                 value = "0.0.0.0/0" //BAD BAD VERY BAD
-            } */
+            } /*
             ipv4_enabled    = false
-            private_network = var.vpc_id
+            private_network = var.vpc_id    */
         }
     }
 }
