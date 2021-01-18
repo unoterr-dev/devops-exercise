@@ -31,7 +31,7 @@ node { /*
         }  */
        stage('Destroy') {
         dir('blog/terraform/all') {
-                sh "terraform destroy"
+                sh "terraform destroy -auto-approve"
             }
         } 
 }
