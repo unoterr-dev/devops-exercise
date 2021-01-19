@@ -12,4 +12,5 @@ variable "region" {
 
 variable "image" {
   type = string
+  default = "c97151a"
 }
