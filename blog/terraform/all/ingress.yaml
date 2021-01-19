@@ -8,5 +8,5 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: app
+              serviceName: blog-service
               servicePort: 3000
