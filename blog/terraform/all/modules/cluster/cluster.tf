@@ -8,7 +8,7 @@ resource "google_container_cluster" "primary" {
   initial_node_count       = 1
 
   network    = var.vpc_name
-  subnetwork = "terraform-vpc"
+  subnetwork = "terraform-sub"
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block  = "/16"
