@@ -8,3 +8,4 @@ envsubst < blog.yaml > blog_tmp.yaml
 kubectl apply -f blog_tmp.yaml
 kubectl apply -f service_blog.yaml
 kubectl apply -f ingress.yaml
+#
