@@ -13,8 +13,8 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = "terraform-net"
-  subnetwork = "terraform-net"
+  network    = "terraform-vpc"
+  subnetwork = "terraform-sub"
 
 }
 # gcloud container clusters get-credentials terraform-cluster --zone="europe-north1""
