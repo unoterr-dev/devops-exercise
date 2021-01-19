@@ -31,11 +31,11 @@ resource "google_container_node_pool" "primary_node" {
       "https://www.googleapis.com/auth/devstorage.full_control",
     ]
   }
-  
+  /*
   provisioner "local-exec" {        
     command = "cd /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin/ $$ ./gcloud container clusters describe ${google_container_cluster.primary.name} --zone=${google_container_cluster.primary.location}"
 
-  }
+  }   */
 }
 
 data "google_service_account_access_token" "kube" {
