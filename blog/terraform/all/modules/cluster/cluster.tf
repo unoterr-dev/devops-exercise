@@ -8,7 +8,7 @@ resource "google_container_cluster" "primary" {
   initial_node_count       = 1
 
   network    = var.vpc_name
-  subnetwork = "terraform-sub"
+  subnetwork = var.vpc_name
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block  = "/16"
@@ -35,7 +35,7 @@ resource "google_container_node_pool" "primary_node" {
   provisioner "local-exec" {        
     command = "cd /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin/ $$ ./gcloud container clusters describe ${google_container_cluster.primary.name} --zone=${google_container_cluster.primary.location}"
 
-  }   */
+  } */
 }
 
 data "google_service_account_access_token" "kube" {
