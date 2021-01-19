@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog
+  labels:
+    purpose: blog
+spec:
+  selector:
+    matchLabels:
+      app: blog
+  template:
+    metadata:
+      labels:
+        app: blog
+    spec:
+      containers:
+      - name: blog
+        imagePullPolicy: Always
+        image: eu.gcr.io/terraformar/unoterr1/blog_comp:$IMAGE
+        env:
+        - name: DATABASE_HOST
+          value: $HOST
+        - name: DATABASE_NAME
+          value: $NAME
+        - name: DATABASE_PASSWORD
+          value: $PASS
+        - name: DATABASE_USERNAME
+          value: $USER
+        ports:
+          - containerPort: 3000

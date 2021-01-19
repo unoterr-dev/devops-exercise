@@ -10,13 +10,8 @@ resource "random_id" "db_name_suffix" {
 resource "google_sql_database_instance" "main_primary" {
     name = "terraform-base-${random_id.db_name_suffix.hex}"
     database_version = "POSTGRES_13"
-    region = var.pool_zone // "europe-north1"
-
-
+    region = var.pool_zone 
     deletion_protection = false
-
-//    depends_on = [kubernetes_deployment.app]   //??? CHICKEN OR EGG
-//    depends_on = [google_container_node_pool.primary_node]
 
     settings {
         tier = "db-f1-micro"
@@ -24,7 +19,6 @@ resource "google_sql_database_instance" "main_primary" {
         disk_size = 10
 
         ip_configuration {
-            
             authorized_networks {
                 name = "All"
                 //value = var.pool_addres 
