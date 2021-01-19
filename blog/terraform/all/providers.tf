@@ -25,6 +25,7 @@ module "sql" {
     pass = module.secrets.secret_pass
 }
 
+/*
 module "deploy" {
     source = "./modules/deploy"
     host_addres = module.sql.host_addres
@@ -33,7 +34,7 @@ module "deploy" {
     image = var.image
 }
 
-/*
+
 provider "google-beta" {
     credentials = file(var.credentials)
     project     = var.project
