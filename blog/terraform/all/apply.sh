@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-image = 'c97151a'
+image=c97151a
 terraform init -input=false
 terraform plan -input=false -out tfplan -var 'image=${image}'
 
