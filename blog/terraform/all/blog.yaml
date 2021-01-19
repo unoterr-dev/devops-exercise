@@ -16,7 +16,7 @@ spec:
       containers:
       - name: blog
         imagePullPolicy: Always
-        image: eu.gcr.io/terraformar/unoterr1/blog_comp:$IMAGE
+        image: "eu.gcr.io/terraformar/unoterr1/blog_comp:$IMAGE"
         env:
         - name: DATABASE_HOST
           value: $HOST
