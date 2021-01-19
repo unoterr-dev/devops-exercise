@@ -12,7 +12,9 @@ resource "google_container_cluster" "primary" {
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block  = "/16"
+    cluster_secondary_range_name  = "cluster"
     services_ipv4_cidr_block = "/22"
+    services_secondary_range_name = "services"
   }
 }
 
