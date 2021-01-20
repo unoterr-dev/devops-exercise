@@ -22,9 +22,15 @@ spec:
           value: $HOST
         - name: DATABASE_NAME
           value: $NAME
-        - name: DATABASE_PASSWORD
-          value: $PASS
         - name: DATABASE_USERNAME
-          value: $USER
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: DATABASE_NAME
+        - name: DATABASE_PASSWORD
+           valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: DATABASE_PASSWORD
         ports:
           - containerPort: 3000

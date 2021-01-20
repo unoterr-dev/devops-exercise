@@ -43,3 +43,4 @@ yarn-debug.log*
 .env
 mysecrets.yaml
 blog/terraform/cluster/cred.json
+blog/terraform/all/mysecrets.yaml
