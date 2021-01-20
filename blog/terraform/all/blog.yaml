@@ -28,7 +28,7 @@ spec:
               name: mysecret
               key: DATABASE_NAME
         - name: DATABASE_PASSWORD
-           valueFrom:
+          valueFrom:
             secretKeyRef:
               name: mysecret
               key: DATABASE_PASSWORD
