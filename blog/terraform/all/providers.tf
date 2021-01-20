@@ -8,9 +8,11 @@ module "secrets" {
     source = "./modules/secrets"
 }
 
+/*
 module "vpc" {
     source = "./modules/vpc"
 }
+*/
 
 module "cluster" {
     source = "./modules/cluster"
